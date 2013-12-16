@@ -1,6 +1,7 @@
 ; --------------------------------------------------------------------------
 ; Save Android Icons 
 ; Copyright (C) 2011 Goran Siric ( http://www.izvornikod.com )
+; Copyright (C) 2013 Dieter Adriaenssens <ruleant@users.sourceforge.net>
 ; All rights reserved
 ;
 ; Based on script "Phoca Save Icons" maded by Jan Pavelka ( http://www.phoca.cz )
@@ -14,12 +15,12 @@
 ; http://www.gnu.org/copyleft/gpl.html.
 ; --------------------------------------------------------------------------
 
-; Update 06.02.2012
+; Update 06.02.2012 (by Goran Siric)
 ; - added support for XHDPI screens
 ; - added support for action bar icons 
 ; - added support for custom icon sizes
 
-; Update 13.12.2013
+; Update 13.12.2013 (by Dieter Adriaenssens)
 ; - added support for XXHDPI and XXXHDPI screens
 
 (define (script-fu-save-android-icons 
