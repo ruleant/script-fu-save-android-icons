@@ -19,6 +19,9 @@
 ; - added support for action bar icons 
 ; - added support for custom icon sizes
 
+; Update 13.12.2013
+; - added support for XXHDPI and XXXHDPI screens
+
 (define (script-fu-save-android-icons 
 		iconType 
 		customW_mdpi
@@ -47,20 +50,24 @@
 	(y 0)
 	(partName "")
 	(stdFolderName "")
-	(formatsW (cons-array 4 'byte))
-	(formatsH (cons-array 4 'byte))
+	(formatsW (cons-array 6 'byte))
+	(formatsH (cons-array 6 'byte))
 	(namePrefix "")
 	(useNamePrefix "")
 	(fS 0)
 	(customW_ldpi (round (* customW_mdpi 0.75) ))
 	(customW_hdpi (round (* customW_mdpi 1.5) ))
 	(customW_xhdpi (round (* customW_mdpi 2.0) ))
+	(customW_xxhdpi (round (* customW_mdpi 3.0) ))
+	(customW_xxxhdpi (round (* customW_mdpi 4.0) ))
 	(customH_ldpi (round (* customH_mdpi 0.75) ))
 	(customH_hdpi (round (* customH_mdpi 1.5) ))
 	(customH_xhdpi (round (* customH_mdpi 2.0) ))
+	(customH_xxhdpi (round (* customH_mdpi 3.0) ))
+	(customH_xxxhdpi (round (* customH_mdpi 4.0) ))
 )
 
-;	"Android icons type"		'("Launcher Icons 36/48/72/96" "Menu Icons" "Status Bar Icons" "Tab Icons" "Dialog Icons" "List View Icons")
+;	"Android icons type"		'("Launcher Icons 36/48/72/96/144/192" "Menu Icons" "Status Bar Icons" "Tab Icons" "Dialog Icons" "List View Icons")
 ;	"Android icons type"		'("Launcher Icons" "Menu Icons" "Action Bar Icons" "Status Bar Icons" "Tab Icons" "Dialog Icons" "List View Icons")
 
 ; "Launcher Icons" "Menu Icons"
@@ -70,10 +77,14 @@
 	(aset formatsW 1 48)
 	(aset formatsW 2 72)
 	(aset formatsW 3 96)
+	(aset formatsW 4 144)
+	(aset formatsW 5 192)
 	(aset formatsH 0 36)
 	(aset formatsH 1 48)
 	(aset formatsH 2 72)
 	(aset formatsH 3 96)
+	(aset formatsH 4 144)
+	(aset formatsH 5 192)
 	)
 )
 
@@ -83,10 +94,14 @@
 	(aset formatsW 1 24)
 	(aset formatsW 2 36)
 	(aset formatsW 3 48)
+	(aset formatsW 4 72)
+	(aset formatsW 5 96)
 	(aset formatsH 0 18)
 	(aset formatsH 1 24)
 	(aset formatsH 2 36)
 	(aset formatsH 3 48)
+	(aset formatsH 4 72)
+	(aset formatsH 5 96)
 	)
 )
 
@@ -96,10 +111,14 @@
 	(aset formatsW 1 32)
 	(aset formatsW 2 48)
 	(aset formatsW 3 64)
+	(aset formatsW 4 96)
+	(aset formatsW 5 128)
 	(aset formatsH 0 24)
 	(aset formatsH 1 32)
 	(aset formatsH 2 48)
 	(aset formatsH 3 64)
+	(aset formatsH 4 96)
+	(aset formatsH 5 128)
 	)
 )
 
@@ -109,10 +128,14 @@
 	(aset formatsW 1 customW_mdpi)
 	(aset formatsW 2 customW_hdpi)
 	(aset formatsW 3 customW_xhdpi)
+	(aset formatsW 4 customW_xxhdpi)
+	(aset formatsW 5 customW_xxxhdpi)
 	(aset formatsH 0 customH_ldpi)
 	(aset formatsH 1 customH_mdpi)
 	(aset formatsH 2 customH_hdpi)
 	(aset formatsH 3 customH_xhdpi)
+	(aset formatsH 4 customH_xxhdpi)
+	(aset formatsH 5 customH_xxxhdpi)
  )
 )
 
@@ -130,12 +153,14 @@
 
 
 
-(while (< y 4)
+(while (< y 6)
 
 	( cond ( (= y 0) (set! stdFolderName "drawable-ldpi" )))
 	( cond ( (= y 1) (set! stdFolderName "drawable-mdpi" )))
 	( cond ( (= y 2) (set! stdFolderName "drawable-hdpi" )))
 	( cond ( (= y 3) (set! stdFolderName "drawable-xhdpi" )))
+	( cond ( (= y 4) (set! stdFolderName "drawable-xxhdpi" )))
+	( cond ( (= y 5) (set! stdFolderName "drawable-xxxhdpi" )))
 	
 	(set! newImage (car (gimp-image-duplicate image)))
 	; set that all layers have same size as image
@@ -177,10 +202,10 @@
 					"License GPLv3"
 					"22 September 2011"
 					"RGB* GRAY* INDEXED*"
-					SF-OPTION	"Android icons type"		'("Launcher Icons (36x36 48x48 72x72 96x96)" "Menu Icons  (36x36 48x48 72x72 96x96)" "Action Bar Icons (18x18 24x24 36x36 48x48)" "Status Bar Icons (18x18 24x24 36x36 48x48)" "Tab Icons (24x24 32x32 48x48 64x64)" "Dialog Icons (24x24 32x32 48x48 64x64)" "List View Icons (24x24 32x32 48x48 64x64)" "Custom Icon  mdpi=baseline ldpi=0.75x hdpi=1.5x xhdpi=2x")
+					SF-OPTION	"Android icons type"		'("Launcher Icons (36x36 48x48 72x72 96x96i 144x144 192x192)" "Menu Icons  (36x36 48x48 72x72 96x96 144x144 192x192)" "Action Bar Icons (18x18 24x24 36x36 48x48 72x72 96x96)" "Status Bar Icons (18x18 24x24 36x36 48x48 72x72 96x96)" "Tab Icons (24x24 32x32 48x48 64x64 96x96 128x128)" "Dialog Icons (24x24 32x32 48x48 64x64 96x96 128x128)" "List View Icons (24x24 32x32 48x48 64x64 96x96 128x128)" "Custom Icon  mdpi=baseline ldpi=0.75x hdpi=1.5x xhdpi=2x xxhdpi=3x xxxhdpi=4x")
 					SF-ADJUSTMENT	"Custom Icon - mdpi width "			'(48 0 99999 1 10 0 1)
 					SF-ADJUSTMENT	"Custom Icon - mdpi height"			'(48 0 99999 1 10 0 1)
-					SF-OPTION	"Save mode"		'("Save to drawable-ldpi,mdpi,hdpi,xhdpi folders below Root folder" "Append resolution to file name")
+					SF-OPTION	"Save mode"		'("Save to drawable-ldpi,mdpi,hdpi,xhdpi,xxhdpi,xxxhdpi folders below Root folder" "Append resolution to file name")
 					SF-TOGGLE	"Use android naming convention"					TRUE
 					SF-IMAGE 	"Image"				0
 					SF-DIRNAME	"Root folder"		""
