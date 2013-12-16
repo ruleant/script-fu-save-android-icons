@@ -14,8 +14,8 @@ More info on
 License
 -------
 
-Copyright (C) 2011 Goran Siric ( http://www.izvornikod.com )
-Copyright (C) 2013 Dieter Adriaenssens <ruleant@users.sourceforge.net>
+* Copyright (C) 2011 Goran Siric ( http://www.izvornikod.com )
+* Copyright (C) 2013 Dieter Adriaenssens <ruleant@users.sourceforge.net>
 
 This program is free software: you can redistribute it and/or modify
 it under the terms of the GNU General Public License as published by
