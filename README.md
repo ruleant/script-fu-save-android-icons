@@ -1,5 +1,5 @@
-script-fu-save-android-icons
-============================
+Save android icons (Gimp script-fu)
+===================================
 
 Gimp script to create Android icons for different screen sizes and resolutions.
 
