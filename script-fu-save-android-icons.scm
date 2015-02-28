@@ -187,7 +187,7 @@
 	(python-fu-eval 
         RUN-NONINTERACTIVE 
         (string-append 
-            "import os;\ntry:\n\tos.makedirs(os.path.dirname('" 
+            "import os\nimport errno\ntry:\n\tos.makedirs(os.path.dirname('" 
             newName 
             "'))\nexcept OSError as exception:\n\tif exception.errno != errno.EEXIST:\n\t\traise"))
 
