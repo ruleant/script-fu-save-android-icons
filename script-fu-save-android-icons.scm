@@ -184,6 +184,12 @@
 		)
 	)
 	
+	(python-fu-eval 
+        RUN-NONINTERACTIVE 
+        (string-append 
+            "import os;\ntry:\n\tos.makedirs(os.path.dirname('" 
+            newName 
+            "'))\nexcept OSError as exception:\n\tif exception.errno != errno.EEXIST:\n\t\traise"))
 
 	(file-png-save2 1 newImage newDraw newName rawName interlace compression bKGD gAMA oFFs pHYs tIME comment svtrans)
 
