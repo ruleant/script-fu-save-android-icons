@@ -172,14 +172,14 @@
 	(set! newDraw (car (gimp-image-get-active-drawable newImage)))
 		
 	(cond ( (= saveMode 0)
-		(set! newName (string-append folder "/" stdFolderName "/" useNamePrefix name  ".png"))
+		(set! newName (string-append folder DIR-SEPARATOR stdFolderName DIR-SEPARATOR useNamePrefix name  ".png"))
 		(set! rawName (string-append useNamePrefix name "-" partName "0.png"))
 		)
 	)
 	
 	(cond ( (= saveMode 1)
 		(set! partName (string-append (number->string (aref formatsW y)) "x" (number->string (aref formatsH y)) ))
-		(set! newName (string-append folder "/" useNamePrefix name "_" partName ".png"))
+		(set! newName (string-append folder DIR-SEPARATOR useNamePrefix name "_" partName ".png"))
 		(set! rawName (string-append useNamePrefix name  ".png"))
 		)
 	)
