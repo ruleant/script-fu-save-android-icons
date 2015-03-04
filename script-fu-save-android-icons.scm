@@ -172,18 +172,53 @@
 	(set! newDraw (car (gimp-image-get-active-drawable newImage)))
 		
 	(cond ( (= saveMode 0)
-		(set! newName (string-append folder "/" stdFolderName "/" useNamePrefix name  ".png"))
+		(set! newName (string-append folder DIR-SEPARATOR stdFolderName DIR-SEPARATOR useNamePrefix name  ".png"))
 		(set! rawName (string-append useNamePrefix name "-" partName "0.png"))
 		)
 	)
 	
 	(cond ( (= saveMode 1)
 		(set! partName (string-append (number->string (aref formatsW y)) "x" (number->string (aref formatsH y)) ))
-		(set! newName (string-append folder "/" useNamePrefix name "_" partName ".png"))
+		(set! newName (string-append folder DIR-SEPARATOR useNamePrefix name "_" partName ".png"))
 		(set! rawName (string-append useNamePrefix name  ".png"))
 		)
 	)
 	
+	; Thanks to http://stackoverflow.com/a/11526313
+	(define (string-replace strIn strReplace strReplaceWith)
+		(let*
+			(
+				(curIndex 0)
+				(replaceLen (string-length strReplace))
+				(replaceWithLen (string-length strReplaceWith))
+				(inLen (string-length strIn))
+				(result strIn)
+			)
+			;loop through the main string searching for the substring
+			(while (<= (+ curIndex replaceLen) inLen)
+				;check to see if the substring is a match
+				(if (substring-equal? strReplace result curIndex (+ curIndex replaceLen))
+					(begin
+						;create the result string
+						(set! result (string-append (substring result 0 curIndex) strReplaceWith (substring result (+ curIndex replaceLen) inLen)))
+						;now set the current index to the end of the replacement. it will get incremented below so take 1 away so we don't miss anything
+						(set! curIndex (-(+ curIndex replaceWithLen) 1))
+						;set new length for inLen so we can accurately grab what we need
+						(set! inLen (string-length result))
+					)
+				)
+				(set! curIndex (+ curIndex 1))
+			)
+		   (string-append result "")
+		)
+	)
+
+	(python-fu-eval 
+		RUN-NONINTERACTIVE 
+		(string-append 
+			"import os\nimport errno\nimport sys\ntry:\n\tos.makedirs(os.path.dirname('" 
+			(string-replace newName DIR-SEPARATOR "/") 
+			"'.encode(sys.getfilesystemencoding())))\nexcept OSError as exception:\n\tif exception.errno != errno.EEXIST:\n\t\traise"))
 
 	(file-png-save2 1 newImage newDraw newName rawName interlace compression bKGD gAMA oFFs pHYs tIME comment svtrans)
 
