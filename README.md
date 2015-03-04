@@ -5,7 +5,7 @@ Gimp script to create Android icons for different screen sizes and resolutions.
 
 Originaly created by Goran Siric ( http://www.izvornikod.com ),
 based on script "Phoca Save Icons" maded by Jan Pavelka ( http://www.phoca.cz ),
-modified by Dieter Adriaenssens (ruleant@users.sourceforge.net).
+modified by Dieter Adriaenssens and Leonid S. Usov.
 
 More info on
 * http://registry.gimp.org/node/25592
@@ -26,6 +26,7 @@ License
 
 * Copyright (C) 2011 Goran Siric ( http://www.izvornikod.com )
 * Copyright (C) 2013 Dieter Adriaenssens <ruleant@users.sourceforge.net>
+* Copyright (C) 2015 Leonid S. Usov <leonid.s.usov@gmail.com>
 
 This program is free software: you can redistribute it and/or modify
 it under the terms of the GNU General Public License as published by
