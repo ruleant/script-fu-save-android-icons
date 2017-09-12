@@ -59,6 +59,7 @@
 	(formatsH (cons-array 6 'byte))
 	(namePrefix "")
 	(useNamePrefix "")
+	(folderNamePrefix "")
 	(fS 0)
 	(customW_ldpi (round (* customW_mdpi 0.75) ))
 	(customW_hdpi (round (* customW_mdpi 1.5) ))
@@ -156,16 +157,17 @@
 
 (cond ( (= useNamingConvention TRUE) (set! useNamePrefix namePrefix) ))
 
-
+(cond ((= iconType 0 ) (set! folderNamePrefix "mipmap"))
+	(else (set! folderNamePrefix "drawable")))
 
 (while (< y 6)
 
-	( cond ( (= y 0) (set! stdFolderName "drawable-ldpi" )))
-	( cond ( (= y 1) (set! stdFolderName "drawable-mdpi" )))
-	( cond ( (= y 2) (set! stdFolderName "drawable-hdpi" )))
-	( cond ( (= y 3) (set! stdFolderName "drawable-xhdpi" )))
-	( cond ( (= y 4) (set! stdFolderName "drawable-xxhdpi" )))
-	( cond ( (= y 5) (set! stdFolderName "drawable-xxxhdpi" )))
+	( cond ( (= y 0) (set! stdFolderName (string-append folderNamePrefix "-ldpi" ))))
+	( cond ( (= y 1) (set! stdFolderName (string-append folderNamePrefix "-mdpi" ))))
+	( cond ( (= y 2) (set! stdFolderName (string-append folderNamePrefix "-hdpi" ))))
+	( cond ( (= y 3) (set! stdFolderName (string-append folderNamePrefix "-xhdpi" ))))
+	( cond ( (= y 4) (set! stdFolderName (string-append folderNamePrefix "-xxhdpi" ))))
+	( cond ( (= y 5) (set! stdFolderName (string-append folderNamePrefix "-xxxhdpi" ))))
 	
 	(set! newImage (car (gimp-image-duplicate image)))
 	; set that all layers have same size as image
@@ -242,7 +244,7 @@
 					"License GPLv3"
 					"22 September 2011"
 					"RGB* GRAY* INDEXED*"
-					SF-OPTION	"Android icons type"		'("Launcher Icons (36x36 48x48 72x72 96x96i 144x144 192x192)" "Menu Icons  (36x36 48x48 72x72 96x96 144x144 192x192)" "Action Bar Icons (18x18 24x24 36x36 48x48 72x72 96x96)" "Status Bar Icons (18x18 24x24 36x36 48x48 72x72 96x96)" "Tab Icons (24x24 32x32 48x48 64x64 96x96 128x128)" "Dialog Icons (24x24 32x32 48x48 64x64 96x96 128x128)" "List View Icons (24x24 32x32 48x48 64x64 96x96 128x128)" "Custom Icon  mdpi=baseline ldpi=0.75x hdpi=1.5x xhdpi=2x xxhdpi=3x xxxhdpi=4x")
+					SF-OPTION	"Android icons type"		'("Launcher Icons (36x36 48x48 72x72 96x96 144x144 192x192)" "Menu Icons  (36x36 48x48 72x72 96x96 144x144 192x192)" "Action Bar Icons (18x18 24x24 36x36 48x48 72x72 96x96)" "Status Bar Icons (18x18 24x24 36x36 48x48 72x72 96x96)" "Tab Icons (24x24 32x32 48x48 64x64 96x96 128x128)" "Dialog Icons (24x24 32x32 48x48 64x64 96x96 128x128)" "List View Icons (24x24 32x32 48x48 64x64 96x96 128x128)" "Custom Icon  mdpi=baseline ldpi=0.75x hdpi=1.5x xhdpi=2x xxhdpi=3x xxxhdpi=4x")
 					SF-ADJUSTMENT	"Custom Icon - mdpi width "			'(48 0 99999 1 10 0 1)
 					SF-ADJUSTMENT	"Custom Icon - mdpi height"			'(48 0 99999 1 10 0 1)
 					SF-OPTION	"Save mode"		'("Save to drawable-ldpi,mdpi,hdpi,xhdpi,xxhdpi,xxxhdpi folders below Root folder" "Append resolution to file name")
